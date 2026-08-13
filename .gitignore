@@ -1,0 +1,12 @@
+.gradle/
+.gradle-local/
+.idea/
+.serena/
+.vscode/
+bin/
+build/
+run/
+out/
+*.iml
+*.log
+docs/

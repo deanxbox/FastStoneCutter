@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "faststonecutter",
+  "version": "${version}",
+  "name": "Fast Stone Cutter",
+  "description": "Adds a sleek Cut All Stone button to the vanilla stonecutter screen.",
+  "authors": [
+    "deanxbox"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "mixins": [
+    {
+      "config": "faststonecutter.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25"
+  }
+}

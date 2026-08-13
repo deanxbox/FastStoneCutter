@@ -1,0 +1,4 @@
+{
+  "gui.faststonecutter.cut_all": "Cut All Stone",
+  "gui.faststonecutter.cut_all.tooltip": "Cut every matching input stack into the selected stonecutter result."
+}
