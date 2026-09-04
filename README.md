@@ -19,3 +19,11 @@ Minecraft 26.2 requires Java 25 for the Gradle JVM.
 ```powershell
 .\gradlew.bat build
 ```
+
+## Release
+
+Bump `mod_version` in `gradle.properties`, commit the change on the branch to release, then push a matching version tag:
+
+```sh
+git tag vX.Y.Z && git push origin vX.Y.Z
+```
