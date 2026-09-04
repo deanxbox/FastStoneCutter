@@ -1,5 +1,6 @@
 plugins {
     id 'net.fabricmc.fabric-loom' version "${loom_version}"
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = project.mod_version
@@ -62,4 +63,15 @@ jar {
     from('LICENSE') {
         rename { "${it}_${archiveName}" }
     }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "faststonecutter"
+    versionNumber = project.mod_version
+    versionType = "release"
+    uploadFile = tasks.named("jar")
+    gameVersions = ["26.1", "26.2"]
+    loaders = ["fabric"]
+    changelog = file("CHANGELOG.md").exists() ? file("CHANGELOG.md").text : ""
 }

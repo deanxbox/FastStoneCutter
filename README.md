@@ -19,3 +19,16 @@ Minecraft 26.2 requires Java 25 for the Gradle JVM.
 ```powershell
 .\gradlew.bat build
 ```
+
+## Release
+
+Releases are published to Modrinth via the [Minotaur](https://modrinth.com/plugin/minotaur) Gradle plugin, triggered by pushing a branch-prefixed tag.
+
+1. Bump `mod_version` in `gradle.properties`.
+2. Add a new `## X.Y.Z` section to the top of `CHANGELOG.md` describing the changes.
+3. Commit both changes on this branch.
+4. Tag using `26.1-2-v<mod_version>` and push the tag:
+
+```sh
+git tag 26.1-2-vX.Y.Z && git push origin 26.1-2-vX.Y.Z
+```
