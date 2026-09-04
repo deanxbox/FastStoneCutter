@@ -6,13 +6,13 @@ import net.deanxbox.faststonecutter.StonecutterAutomation.ActionType;
 import net.deanxbox.faststonecutter.StonecutterAutomation.Session;
 import net.deanxbox.faststonecutter.StonecutterAutomation.SlotSnapshot;
 import net.deanxbox.faststonecutter.StonecutterAutomation.TickResult;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerInput;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.item.ItemStack;
@@ -97,8 +97,8 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
         this.addRenderableWidget(this.faststonecutter$cutAllButton);
     }
 
-    @Inject(method = "extractRenderState", at = @At("HEAD"))
-    private void faststonecutter$updateButtonState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float tickDelta, CallbackInfo ci) {
+    @Inject(method = "render", at = @At("HEAD"))
+    private void faststonecutter$updateButtonState(GuiGraphics graphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
         if (this.faststonecutter$cutAllButton != null) {
             this.faststonecutter$cutAllButton.active = !this.faststonecutter$isRunning() && this.faststonecutter$canStartCutting();
         }
@@ -218,13 +218,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
     @Unique
     private void faststonecutter$quickMoveSlot(StonecutterMenu menu, int slotIndex) {
         if (this.minecraft != null && this.minecraft.player != null && this.minecraft.gameMode != null) {
-            this.minecraft.gameMode.handleContainerInput(
-                    menu.containerId,
-                    slotIndex,
-                    0,
-                    ContainerInput.QUICK_MOVE,
-                    this.minecraft.player
-            );
+            this.minecraft.gameMode.handleInventoryMouseClick(menu.containerId, slotIndex, 0, ClickType.QUICK_MOVE, this.minecraft.player);
         }
     }
 }
