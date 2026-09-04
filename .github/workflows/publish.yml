@@ -3,7 +3,7 @@ name: Publish to Modrinth
 on:
   push:
     tags:
-      - "v*"
+      - "1.21.1-11-v*"
 
 permissions:
   contents: read
@@ -18,14 +18,7 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: gradle
-      - name: Build
-        run: ./gradlew build
       - name: Publish to Modrinth
-        uses: Kira-NT/mc-publish@v3
-        with:
-          modrinth-id: faststonecutter
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          loaders: fabric
-          game-versions: ">=1.21.1 <1.21.12"
-          files: build/libs/!(*-@(dev|sources|javadoc)).jar
-          version-type: release
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: ./gradlew modrinth
