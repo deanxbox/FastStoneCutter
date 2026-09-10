@@ -74,6 +74,7 @@ modrinth {
     versionNumber = "${project.mod_version}+mc${project.minecraft_version}"
     versionName = "v${project.mod_version} for MC ${project.minecraft_version}"
     versionType = "release"
+    changelog = file("CHANGELOG.md").exists() ? file("CHANGELOG.md").text : null
     uploadFile = remapJar
     gameVersions = project.modrinth_game_versions.split(',').toList()
     loaders = ["fabric"]
