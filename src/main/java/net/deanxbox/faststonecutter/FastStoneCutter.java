@@ -21,7 +21,7 @@ public final class FastStoneCutter implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        PayloadTypeRegistry.serverboundPlay().register(CutAllPayload.TYPE, CutAllPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(CutAllPayload.TYPE, CutAllPayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(CutAllPayload.TYPE, (payload, context) -> cutAll(context.player()));
     }
 
