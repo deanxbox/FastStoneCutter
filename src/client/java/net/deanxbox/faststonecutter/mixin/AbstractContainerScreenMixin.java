@@ -1,11 +1,13 @@
 package net.deanxbox.faststonecutter.mixin;
 
+import net.deanxbox.faststonecutter.FastStoneCutter.CutAllPayload;
 import net.deanxbox.faststonecutter.StonecutterAutomation;
 import net.deanxbox.faststonecutter.StonecutterAutomation.Action;
 import net.deanxbox.faststonecutter.StonecutterAutomation.ActionType;
 import net.deanxbox.faststonecutter.StonecutterAutomation.Session;
 import net.deanxbox.faststonecutter.StonecutterAutomation.SlotSnapshot;
 import net.deanxbox.faststonecutter.StonecutterAutomation.TickResult;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
@@ -169,6 +171,11 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
     private void faststonecutter$cutAllStone() {
         StonecutterMenu menu = this.faststonecutter$stonecutterMenu();
         if (menu == null || !this.faststonecutter$canStartCutting()) {
+            return;
+        }
+
+        if (this.minecraft.hasSingleplayerServer() || ClientPlayNetworking.canSend(CutAllPayload.TYPE)) {
+            ClientPlayNetworking.send(CutAllPayload.INSTANCE);
             return;
         }
 

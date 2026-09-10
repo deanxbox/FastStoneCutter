@@ -8,7 +8,12 @@
     "deanxbox"
   ],
   "license": "MIT",
-  "environment": "client",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.deanxbox.faststonecutter.FastStoneCutter"
+    ]
+  },
   "mixins": [
     {
       "config": "faststonecutter.client.mixins.json",
