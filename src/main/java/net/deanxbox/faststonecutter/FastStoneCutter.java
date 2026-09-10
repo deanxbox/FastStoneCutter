@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.StonecutterMenu;
@@ -92,7 +92,7 @@ public final class FastStoneCutter implements ModInitializer {
     public record CutAllPayload() implements CustomPacketPayload {
         public static final CutAllPayload INSTANCE = new CutAllPayload();
         public static final Type<CutAllPayload> TYPE = new Type<>(
-                Identifier.fromNamespaceAndPath("faststonecutter", "cut_all")
+                ResourceLocation.fromNamespaceAndPath("faststonecutter", "cut_all")
         );
         public static final StreamCodec<RegistryFriendlyByteBuf, CutAllPayload> CODEC = StreamCodec.unit(INSTANCE);
 
